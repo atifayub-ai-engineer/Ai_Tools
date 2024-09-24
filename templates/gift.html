@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Gift Finder</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body{
+        background-color: blueviolet;
+        color: white;
+    }
+</style>
+<body>
+<div class="container mt-5">
+<img src="{% static 'pic.png' %}" style="align-content: center; width: 150px; height: 150px; margin-left: 42%; margin-bottom: 50px">
+    <h2 class="text-center mb-4">AI Gift Suggestion</h2>
+    <p class="text-center">Find the perfect gift for any occasion with the help of AI. Instantly get personalized gift recommendations and find unique gift ideas.</p>
+    <form method="POST" id="giftFinderForm">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender">
+                    <option value="">Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="age">Age Range</label>
+                <select class="form-control" id="age" name="age">
+                    <option value="">Select...</option>
+                    <option value="Child">Child</option>
+                    <option value="Teen">Teen</option>
+                    <option value="Adult">Adult</option>
+                    <option value="Senior">Senior</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label for="relationship">Relationship</label>
+                <select class="form-control" id="relationship" name="relationship">
+                    <option value="">Select...</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Family">Family</option>
+                    <option value="Colleague">Colleague</option>
+                    <option value="Partner">Partner</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="price">Price Range</label>
+                <select class="form-control" id="price" name="price">
+                    <option value="">Select...</option>
+                    <option value="Under $20">Under $20</option>
+                    <option value="$20-$50">$20-$50</option>
+                    <option value="$50-$100">$50-$100</option>
+                    <option value="Above $100">Above $100</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label for="gift_type">Gift Type</label>
+                <select class="form-control" id="gift_type" name="gift_type">
+                    <option value="">Select...</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home Decor">Home Decor</option>
+                    <option value="Books">Books</option>
+                    <option value="Toys">Toys</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="occasion">Occasion</label>
+                <select class="form-control" id="occasion" name="occasion">
+                    <option value="">Select...</option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Anniversary">Anniversary</option>
+                    <option value="Holiday">Holiday</option>
+                    <option value="Graduation">Graduation</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <label for="interests">Interests</label>
+                <select class="form-control" id="interests" name="interests">
+                    <option value="">Select...</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Music">Music</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Workout/Gym">Workout/Gym</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Search with AI</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+    </form>
+    <div id="response" class="mt-4">
+        <!-- AI response will be displayed here -->
+        {% if response_message %}
+            <div class="alert alert-info">
+                {{ response_message|safe }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alive or Dead</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            font-size: 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        input[type="submit"] {
+            background-color: blueviolet;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .response {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            background-color: blueviolet;
+            color: white;
+            border-radius: 30px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Alive or Dead</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Enter the name of celebrity">
+            <br>
+            <input type="submit" value="Check Now">
+            {% if message %}
+            <div class="response">
+{#                <h2>Response:</h2>#}
+                <p>{{ message }}</p>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

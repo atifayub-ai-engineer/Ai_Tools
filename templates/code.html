@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Fixer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .code-box {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            position: relative;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f1c40f;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        body{
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Submit Your Code</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="get_code" class="form-label">Enter your code:</label>
+            <textarea class="form-control" id="get_code" name="get_code" rows="6"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if message %}
+    <div class="mt-5">  
+    <p>{{message}}</p>
+        <h2>Explanation</h2>
+        <p>{{ message.explanation }}</p>
+        <br>
+{#        {{ data.code_structure }}#}
+
+        <h2>Corrected Code</h2>
+        <div class="code-box" id="code-box">
+            {{ message.corrected_code }}
+            <button class="copy-button" onclick="copyCode()">Copy</button>
+        </div>
+    </div>  
+    {% endif %}
+</div>
+
+<script>
+    function copyCode() {
+        const codeBox = document.getElementById('code-box');
+        const codeText = codeBox.innerText;
+        navigator.clipboard.writeText(codeText).then(() => {
+            alert('Code copied to clipboard!');
+        }).catch(err => {
+            alert('Failed to copy text: ', err);
+        });
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4JQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
