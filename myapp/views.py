@@ -11,8 +11,7 @@ from django.core.mail import EmailMessage
 from .models import UserEmails
 
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key='sk-proj-5MIiz__RGOGkY1MI7hv1qQRBciZHcqBcxpKtZoNHojhP0_xE5oTRV4ju6wSBozhbNNyfQMZE3ST3BlbkFJ'
-                        '-wpZP0x7ZWCTxwGZTqzRaqtoM0_6HPSuRi1kOi6l9UHsNKQTlzbMqEpqUmrHjCV-fpjz5KRmYA')
+client = OpenAI(api_key)
 
 
 def home(request):
